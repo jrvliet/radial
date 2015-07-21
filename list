@@ -1,0 +1,6 @@
+epstopdf master_radial_density.eps
+epstopdf master_radial_density_scaled.eps
+epstopdf master_radial_metal.eps
+epstopdf master_radial_metal_scaled.eps
+epstopdf master_radial_temp.eps
+epstopdf master_radial_temp_scaled.eps
