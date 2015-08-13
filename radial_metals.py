@@ -17,7 +17,7 @@ expn_list_2 = ['0.901', '0.925', '0.950', '0.976', '0.991', '1.001']
 expn_list_3 = ['0.900', '0.925', '0.950', '0.975', '0.990', '1.000']
 expn_list = [expn_list_1, expn_list_2, expn_list_3]
 sym1 = ['s', '^', 'o']
-sym2 = ['v', '^', 'D']
+sym2 = ['s', '^', 'o']
 col = ['k', 'b', 'r']    # Plotting colors
 rvir = [80.25497, 82.08840, 79.05807]
 mass = [8.1e8, 1.3e8, 2.1e7]
@@ -30,7 +30,7 @@ for i in np.arange(minr, maxr, step):
     Rmin.append(i)
 Rmax = [i+step for i in Rmin]
 
-fig,(p1, p2, p3) = plt.subplots(3,1,figsize=(7.5,10.8))
+fig,(p1, p2, p3) = plt.subplots(3,1,figsize=(6.5,10.8))
 plotList = [p1, p2, p3]
 p12 = p1.twinx()
 p22 = p2.twinx()
@@ -115,13 +115,13 @@ for i in range(0,len(galID_list)):
 #    ax2 = ax1.twinx()
 #    ax2.plot( rmean, snIamean, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa')
     p1.plot( rmean, snIImean, marker=sym1[i], color=col[i], ls='-', label=galdec+', SnII')
-    p12.plot( rmean, snIamean, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa')
+    p12.plot( rmean, snIamean, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa', mfc='none', mec=col[i])
 
     p2.plot( rmean, starScaleII, marker=sym1[i], color=col[i], ls='-', label=galdec+', SnII')
-    p22.plot( rmean, starScaleIa, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa')
+    p22.plot( rmean, starScaleIa, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa', mfc='none', mec=col[i])
 
     p3.plot( rmean, sfrScaleII, marker=sym1[i], color=col[i], ls='-', label=galdec+', SnII')
-    p32.plot( rmean, sfrScaleIa, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa')
+    p32.plot( rmean, sfrScaleIa, marker=sym2[i], color=col[i], ls='--', label=galdec+', SnIa', mfc='none', mec=col[i])
 
 
 
@@ -137,18 +137,19 @@ p1.set_xlabel('Distance [Rvir]')
 p2.set_xlabel('Distance [Rvir]')
 p3.set_xlabel('Distance [Rvir]')
 
-#ax.set_ylim([-6, -1])
+p3.set_ylim([-2.5, 0.0])
+p32.set_ylim([-4.0, -1.5])
 
 p1.set_ylabel('SNII MF')
-p12.set_ylabel('SNIa MF')
+p12.set_ylabel('SNIa MF', labelpad=30, rotation=270)
 
 p2.set_ylabel('SNII MF / $M_{*}$')
-p22.set_ylabel('SNIa MF / $M_{*}$')
+p22.set_ylabel('SNIa MF / $M_{*}$', labelpad=30, rotation=270)
 
 p3.set_ylabel('SNII MF / <SFR>')
-p32.set_ylabel('SNIa MF / <SFR>')
+p32.set_ylabel('SNIa MF / <SFR>', labelpad=30, rotation=270)
 
-#fig.tight_layout()
+fig.tight_layout()
 fig.savefig('master_radial_metal_bulk.pdf', bbox_inches='tight')
     
 

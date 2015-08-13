@@ -42,9 +42,8 @@ expn_list_1 = ['0.900', '0.926', '0.950', '0.975', '0.990', '1.002']
 expn_list_2 = ['0.901', '0.925', '0.950', '0.976', '0.991', '1.001']
 expn_list_3 = ['0.900', '0.925', '0.950', '0.975', '0.990', '1.000']
 expn_list = [expn_list_1, expn_list_2, expn_list_3]
-sym1 = ['x', 's', 'o']
-sym2 = ['v', '^', 'D']
-col = ['b', 'r', 'g']
+sym = ['s', '^', 'o']
+col = ['k', 'b', 'r']
 rvir = [80.25497, 82.08840, 79.05807]
 stellarMass = [8.1e8, 1.3e8, 2.1e7]
 sfr = [0.07, 0.025, 0.0018]
@@ -142,39 +141,40 @@ for i in range(0,len(galID_list)):
     print massmean
     print starScaleM
     print sfrScaleM 
-    p11.plot( rmean, massmean, marker=sym1[i], color=col[i], ls='-', label=galdec+' mass')
-    p12.plot( rmean, density, marker=sym2[i], color=col[i], ls='--', label=galdec+' density')
+    p11.plot( rmean, massmean, marker=sym[i], color=col[i], ls='-', label=galdec+' mass')
+    p12.plot( rmean, density, marker=sym[i], color=col[i], ls='--', label=galdec+' density', mfc='none', mec=col[i])
     
-    p21.plot( rmean, starScaleM, marker=sym1[i], color=col[i], ls='-', label=galdec+' mass')
-    p22.plot( rmean, starScaleD, marker=sym2[i], color=col[i], ls='--', label=galdec+' density')
+    p21.plot( rmean, starScaleM, marker=sym[i], color=col[i], ls='-', label=galdec+' mass')
+    p22.plot( rmean, starScaleD, marker=sym[i], color=col[i], ls='--', label=galdec+' density', mfc='none', mec=col[i])
     
-    p31.plot( rmean, sfrScaleM, marker=sym1[i], color=col[i], ls='-', label=galdec+' mass')
-    p32.plot( rmean, sfrScaleD, marker=sym2[i], color=col[i], ls='--', label=galdec+' density')
+    p31.plot( rmean, sfrScaleM, marker=sym[i], color=col[i], ls='-', label=galdec+' mass')
+    p32.plot( rmean, sfrScaleD, marker=sym[i], color=col[i], ls='--', label=galdec+' density', mfc='none', mec=col[i])
     
 
 
-p11.legend(loc='upper right', frameon=False, fontsize='small')
-p12.legend(loc='upper center', frameon=False, fontsize='small')
-p21.legend(loc='upper right', frameon=False, fontsize='small')
-p22.legend(loc='upper center', frameon=False, fontsize='small')
-p31.legend(loc='upper right', frameon=False, fontsize='small')
-p32.legend(loc='upper center', frameon=False, fontsize='small')
+p11.legend(loc='upper right', frameon=False, fontsize='x-small')
+p12.legend(loc='upper center', frameon=False, fontsize='x-small')
+p21.legend(loc='upper right', frameon=False, fontsize='x-small')
+p22.legend(loc='upper center', frameon=False, fontsize='x-small')
+p31.legend(loc='upper right', frameon=False, fontsize='x-small')
+p32.legend(loc='upper center', frameon=False, fontsize='x-small')
 
 p11.set_xlabel('Distance [Rvir]')
 p21.set_xlabel('Distance [Rvir]')
 p31.set_xlabel('Distance [Rvir]')
 
-#ax1.set_ylim([2, 4])
-#ax1.set_ylim([-7,-3])
+p11.set_ylim([2, 4])
+p21.set_ylim([-7,-3])
+p31.set_ylim([3,7.5])
 
 p21.set_ylabel('$\log($ $M_{gas}$ / $M_{*}$ )')
-p22.set_ylabel('$\log($ $\rho_{gas}$ / $M_{*}$ )', labelpad=30, rotation=270)
+p22.set_ylabel(r'$\log($ $\rho_{gas}$ / $M_{*}$ )', labelpad=30, rotation=270)
  
 p11.set_ylabel('$\log($ $M_{gas}$ [$M_{\odot}$]')
-p12.set_ylabel('$\log($ $\rho_{gas}$ [$M_{\odot}$/kpc$^{3}$] )', labelpad=30, rotation=270)
+p12.set_ylabel(r'$\log($ $\rho_{gas}$ [$M_{\odot}$/kpc$^{3}$] )', labelpad=30, rotation=270)
 
 p31.set_ylabel('$\log($ $M_{gas}$ / <SFR> )')
-p32.set_ylabel('$\log($ $\rho_{gas}$ / <SFR> )', labelpad=30, rotation=270)
+p32.set_ylabel(r'$\log($ $\rho_{gas}$ / <SFR> )', labelpad=30, rotation=270)
 #fig.tight_layout()
 fig.savefig('master_radial_mass_bulk.pdf', bbox_inches='tight')
     

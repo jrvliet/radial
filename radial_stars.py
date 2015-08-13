@@ -27,6 +27,9 @@ fileLoc = '/praesepe/jrvander/dataFiles/'
 fileLoc = '/fomalhaut-data/jrvander/simulations/dwarfs/dataFiles/'
 
 galID_list = ['D9o2', 'D9q', 'D9m4a']
+labels = ['dwSN', 'dwALL\_1', 'dwALL\_8']
+col = ['k', 'b', 'r']
+sym = ['s', '^', 'o']
 expn_list_1 = ['0.900', '0.926', '0.950', '0.975', '0.990', '1.002']
 expn_list_2 = ['0.901', '0.925', '0.950', '0.976', '0.991', '1.001']
 expn_list_3 = ['0.900', '0.925', '0.950', '0.975', '0.990', '1.000']
@@ -44,7 +47,6 @@ fig, ax1 = plt.subplots()
 
 outputFile = 'binnedStars.out'
 outf = open(fileLoc+outputFile, 'w')
-sym = ['x', '^', 'o']
 
 for i in range(0,len(galID_list)):
     
@@ -87,7 +89,7 @@ for i in range(0,len(galID_list)):
 
     allDist = allDist / 6.    # Take the average
     allDist = np.log10( allDist )
-    plt.plot(bins, allDist, marker=sym[i], label=galID)
+    plt.plot(bins, allDist, marker=sym[i], color=col[i], label=labels[i])
 
 plt.xlabel('Distance [Rvir]')
 plt.ylabel('Log ( Number of Stars )')
