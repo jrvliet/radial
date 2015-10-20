@@ -25,7 +25,7 @@ def _gc_distance(field, data):
 
 fileLoc = '/praesepe/jrvander/dataFiles/'
 fileLoc = '/fomalhaut-data/jrvander/simulations/dwarfs/dataFiles/'
-
+fileLoc = '/Users/jacob/research/data/'
 galID_list = ['D9o2', 'D9q', 'D9m4a']
 labels = ['dwSN', 'dwALL\_1', 'dwALL\_8']
 col = ['k', 'b', 'r']
@@ -36,7 +36,8 @@ expn_list_3 = ['0.900', '0.925', '0.950', '0.975', '0.990', '1.000']
 expn_list = [expn_list_1, expn_list_2, expn_list_3]
 rvir = [80.25497, 82.08840, 79.05807]
 rvir = np.asarray(rvir)
-
+galID_list = ['D9m4a']
+expn_list = [['1.000']]
 minr = 0.0
 maxr = 2.0
 step = 0.1
