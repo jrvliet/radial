@@ -8,7 +8,8 @@ import numpy as np
 import os
 import sys
 
-record = int(sys.argv[1])
+#record = int(sys.argv[1])
+record = 0
 
 galID_list = ['D9o2', 'D9q', 'D9m4a']
 galdec_list = ['dwSN', 'dwALL_1', 'dwALL_8']
@@ -30,6 +31,13 @@ Rmax = [i+step for i in Rmin]
 
 lines = []
 radius = []
+
+
+
+meanfig = plt.figure()
+meanax = meanfig.add_subplots(111)
+medfig = plt.figre()
+medax = medfig.add_subplots(111)
 
 
 for i in range(0,len(galID_list)):
@@ -66,6 +74,7 @@ for i in range(0,len(galID_list)):
 
         # Bin the data
         rmean, Tmean, Terr = [],[],[]
+        rmed, Tmed = [], []
         for j in range(0,len(Rmin)):
         
             rmin = Rmin[j]
@@ -76,6 +85,8 @@ for i in range(0,len(galID_list)):
                     rsum.append(r[k])
                     Tsum.append(T[k])
 
+            rmed.append(np.median(rsum))
+            Tmed.append(np.median(Tsum))
             rmean.append(np.mean(rsum))
             Tmean.append(np.mean(Tsum))
             Terr.append(np.std(Tsum))
@@ -83,23 +94,30 @@ for i in range(0,len(galID_list)):
         lines.append( Tmean )
         radius = np.copy( rmean )
 
-        if i==0:
-            scale = np.copy(Tmean)
-        for j in range(0,len(Tmean)):
-            Tmean[j] = Tmean[j]/scale[j]
+#        if i==0:
+#            scale = np.copy(Tmean)
+#        for j in range(0,len(Tmean)):
+#            Tmean[j] = Tmean[j]/scale[j]
 
 
                    
         # Plot
         Tmean = np.log10(Tmean)
+        Tmed = np.log10(Tmed)
         Terr = np.log10(Terr)
         Terr = [0.0 for s in Terr]
-        plt.errorbar(rmean, Tmean, yerr=Terr, fmt=sym[i], label=galdec)
-    
+        meanax.errorbar(rmean, Tmean, yerr=Terr, fmt=sym[i], label=galdec)
+        medax.errorbar(rmed, Tmed, yerr=Terr, fmt=sym[i], label=galdec)
+        
+
 #plt.legend(loc='lower right', frameon=False)
-plt.xlabel('Distance [Rvir]')
-plt.ylabel('log (T [K])')
-plt.savefig('master_radial_temp_scaled_bulk.eps', bbox_inches='tight')
+medax.xlabel('Distance [Rvir]')
+medax.ylabel('log (T [K])')
+medfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
+
+meanax.xlabel('Distance [Rvir]')
+meanax.ylabel('log (T [K])')
+meanfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
 
 
 
