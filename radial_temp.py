@@ -35,9 +35,9 @@ radius = []
 
 
 meanfig = plt.figure()
-meanax = meanfig.add_subplots(111)
+meanax = meanfig.add_subplot(111)
 medfig = plt.figre()
-medax = medfig.add_subplots(111)
+medax = medfig.add_subplot(111)
 
 
 for i in range(0,len(galID_list)):
