@@ -111,12 +111,12 @@ for i in range(0,len(galID_list)):
         
 
 #plt.legend(loc='lower right', frameon=False)
-medax.xlabel('Distance [Rvir]')
-medax.ylabel('log (T [K])')
+medax.set_xlabel('Distance [Rvir]')
+medax.set_ylabel('log (T [K])')
 medfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
 
-meanax.xlabel('Distance [Rvir]')
-meanax.ylabel('log (T [K])')
+meanax.set_xlabel('Distance [Rvir]')
+meanax.set_ylabel('log (T [K])')
 meanfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
 
 
