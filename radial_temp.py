@@ -36,7 +36,7 @@ radius = []
 
 meanfig = plt.figure()
 meanax = meanfig.add_subplot(111)
-medfig = plt.figre()
+medfig = plt.figure()
 medax = medfig.add_subplot(111)
 
 
