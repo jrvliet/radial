@@ -117,7 +117,7 @@ medfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
 
 meanax.set_xlabel('Distance [Rvir]')
 meanax.set_ylabel('log (T [K])')
-meanfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
+meanfig.savefig('master_radial_temp_mean.pdf', bbox_inches='tight')
 
 
 
