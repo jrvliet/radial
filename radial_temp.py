@@ -50,6 +50,8 @@ for i in range(0,len(galID_list)):
 #    n = []
     T = []
     print ''
+    rmean, Tmean, Terr = [],[],[]
+    rmed, Tmed = [], []
     print galID
     for a in expn:
         print a
@@ -73,8 +75,6 @@ for i in range(0,len(galID_list)):
             T.append(temp[j])
 
         # Bin the data
-        rmean, Tmean, Terr = [],[],[]
-        rmed, Tmed = [], []
         for j in range(0,len(Rmin)):
         
             rmin = Rmin[j]
@@ -94,27 +94,21 @@ for i in range(0,len(galID_list)):
         lines.append( Tmean )
         radius = np.copy( rmean )
 
-#        if i==0:
-#            scale = np.copy(Tmean)
-#        for j in range(0,len(Tmean)):
-#            Tmean[j] = Tmean[j]/scale[j]
+    # Plot
+    Tmean = np.log10(Tmean)
+    Tmed = np.log10(Tmed)
+    Terr = np.log10(Terr)
+    Terr = [0.0 for s in Terr]
+    meanax.errorbar(rmean, Tmean, yerr=Terr, fmt=sym[i], label=galdec)
+    medax.errorbar(rmed, Tmed, yerr=Terr, fmt=sym[i], label=galdec)
+    
 
-
-                   
-        # Plot
-        Tmean = np.log10(Tmean)
-        Tmed = np.log10(Tmed)
-        Terr = np.log10(Terr)
-        Terr = [0.0 for s in Terr]
-        meanax.errorbar(rmean, Tmean, yerr=Terr, fmt=sym[i], label=galdec)
-        medax.errorbar(rmed, Tmed, yerr=Terr, fmt=sym[i], label=galdec)
-        
-
-#plt.legend(loc='lower right', frameon=False)
+plt.legend(loc='lower right', frameon=False)
 medax.set_xlabel('Distance [Rvir]')
 medax.set_ylabel('log (T [K])')
 medfig.savefig('master_radial_temp_median.pdf', bbox_inches='tight')
 
+plt.legend(loc='lower right', frameon=False)
 meanax.set_xlabel('Distance [Rvir]')
 meanax.set_ylabel('log (T [K])')
 meanfig.savefig('master_radial_temp_mean.pdf', bbox_inches='tight')
