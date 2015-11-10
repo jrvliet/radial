@@ -99,8 +99,8 @@ for i in range(0,len(galID_list)):
     Tmed = np.log10(Tmed)
     Terr = np.log10(Terr)
     Terr = [0.0 for s in Terr]
-    meanax.errorbar(rmean, Tmean, yerr=Terr, fmt=sym[i], label=galdec)
-    medax.errorbar(rmed, Tmed, yerr=Terr, fmt=sym[i], label=galdec)
+    meanax.errorbar(rmean, Tmean, yerr=Terr, fmt=sym[i], linestyle='None', label=galdec)
+    medax.errorbar(rmed, Tmed, yerr=Terr, fmt=sym[i], linestyle='None', label=galdec)
     
 
 plt.legend(loc='lower right', frameon=False)
